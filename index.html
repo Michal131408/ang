@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tryby Warunkowe w Języku Angielskim</title>
+    <style>
+        /* Reset i podstawowe style */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #6b8cbc;
+            --accent: #ffc107;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #17a2b8;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Nagłówek */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Sekcja hero */
+        .hero {
+            background: linear-gradient(rgba(74, 111, 165, 0.8), rgba(107, 140, 188, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234a6fa5"/><path d="M0 0L100 100M100 0L0 100" stroke="%236b8cbc" stroke-width="2"/></svg>');
+            background-size: cover;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sekcja trybów warunkowych */
+        .conditionals {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .conditional-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .conditional-tab {
+            padding: 0.8rem 1.5rem;
+            background-color: white;
+            border: none;
+            border-radius: 50px;
+            margin: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .conditional-tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .conditional-tab:hover:not(.active) {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .conditional-content {
+            display: none;
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .conditional-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .conditional-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .conditional-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        .conditional-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .conditional-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .conditional-section:last-child {
+            border-bottom: none;
+        }
+
+        .conditional-section h3 {
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .conditional-section h3 span {
+            margin-right: 0.5rem;
+        }
+
+        .example-box {
+            background-color: var(--light);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .example-text {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-translation {
+            color: var(--secondary);
+        }
+
+        /* Responsywność */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .conditional-tabs {
+                gap: 0.5rem;
+            }
+
+            .conditional-tab {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .conditional-content {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .logo-icon {
+                font-size: 1.6rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                height: auto;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 1rem;
+                width: 100%;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .conditional-tabs {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0 1rem;
+            }
+
+            .conditional-tab {
+                margin: 0.25rem 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .conditional-content {
+                padding: 1rem;
+                margin: 1rem;
+            }
+
+            .conditional-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .conditional-icon {
+                margin-bottom: 0.5rem;
+                margin-right: 0;
+            }
+
+            .structure-box {
+                font-size: 0.9rem;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding: 0.75rem;
+            }
+
+            .example-box {
+                padding: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.4rem;
+                font-size: 0.9rem;
+            }
+
+            .conditional-title {
+                font-size: 1.2rem;
+            }
+
+            .conditional-section h3 {
+                font-size: 1rem;
+            }
+
+            .example-text, .example-translation {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Dodaj płynne przejścia */
+        * {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Popraw dotykowe interakcje */
+        @media (hover: none) {
+            .btn:hover {
+                transform: none;
+            }
+
+            .conditional-tab, .example-box {
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .example-box:active {
+                background-color: var(--light);
+                opacity: 0.8;
+            }
+        }
+
+        .badge-zero {
+            background-color: var(--success);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Nagłówek -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">📚</span>
+                    <span>Tryby Warunkowe</span>
+                </div>
+                <button class="mobile-menu-btn">☰</button>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Strona Główna</a></li>
+                        <li><a href="#conditionals">Tryby Warunkowe</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sekcja Hero -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Tryby Warunkowe w Języku Angielskim</h1>
+            <p>Poznaj wszystkie typy trybów warunkowych i naucz się je stosować w praktyce!</p>
+            <a href="#conditionals" class="btn">Zobacz tryby warunkowe</a>
+        </div>
+    </section>
+
+    <!-- Sekcja Trybów Warunkowych -->
+    <section id="conditionals" class="conditionals">
+        <div class="container">
+            <h2 class="section-title">Tryby Warunkowe w Języku Angielskim</h2>
+            
+            <div class="conditional-tabs">
+                <button class="conditional-tab active" data-target="zero">Zero Conditional</button>
+                <button class="conditional-tab" data-target="first">First Conditional</button>
+                <button class="conditional-tab" data-target="second">Second Conditional</button>
+                <button class="conditional-tab" data-target="third">Third Conditional</button>
+                <button class="conditional-tab" data-target="mixed">Mixed Conditional</button>
+            </div>
+            
+            <!-- Zero Conditional -->
+            <div id="zero" class="conditional-content active">
+                <div class="conditional-header">
+                    <span class="conditional-icon">🟢</span>
+                    <h2 class="conditional-title">0 Conditional (Zero Conditional)</h2>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>📘</span> Czym jest:</h3>
+                    <p>Używamy go, gdy mówimy o faktach, prawach natury lub sytuacjach, które zawsze są prawdziwe, jeśli warunek jest spełniony.</p>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>🧩</span> Budowa:</h3>
+                    <div class="structure-box">
+                        If + Present Simple, Present Simple
+                    </div>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>🗣️</span> Przykład:</h3>
+                    <div class="example-box">
+                        <div class="example-text">If you heat water, it boils.</div>
+                        <div class="example-translation">(Jeśli podgrzejesz wodę, ona się gotuje.)</div>
+                    </div>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>💬</span> Wytłumaczenie:</h3>
+                    <p>To jest ogólny fakt – zawsze tak się dzieje. Nie ma tu emocji ani przyszłości, tylko stała prawda.</p>
+                </div>
+            </div>
+
+            <!-- First Conditional -->
+            <div id="first" class="conditional-content">
+                <div class="conditional-header">
+                    <span class="conditional-icon">🟡</span>
+                    <h2 class="conditional-title">1 Conditional (First Conditional)</h2>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>📘</span> Czym jest:</h3>
+                    <p>Używamy go, by mówić o realnych, możliwych sytuacjach w przyszłości. Warunek może się spełnić, więc mówimy, co się stanie jeśli tak się stanie.</p>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>🧩</span> Budowa:</h3>
+                    <div class="structure-box">
+                        If + Present Simple, will + bezokolicznik
+                    </div>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>🗣️</span> Przykład:</h3>
+                    <div class="example-box">
+                        <div class="example-text">If it rains tomorrow, I will stay at home.</div>
+                        <div class="example-translation">(Jeśli jutro będzie padać, zostanę w domu.)</div>
+                    </div>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>💬</span> Wytłumaczenie:</h3>
+                    <p>Warunek jest realny i możliwy — może jutro padać. Mówimy, co zrobimy w takiej sytuacji.</p>
+                </div>
+            </div>
+            
+            <!-- Second Conditional -->
+            <div id="second" class="conditional-content">
+                <div class="conditional-header">
+                    <span class="conditional-icon">🟠</span>
+                    <h2 class="conditional-title">2 Conditional (Second Conditional)</h2>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>📘</span> Czym jest:</h3>
+                    <p>Używamy go, gdy mówimy o sytuacjach nierealnych, mało prawdopodobnych lub hipotetycznych w teraźniejszości lub przyszłości.</p>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>🧩</span> Budowa:</h3>
+                    <div class="structure-box">
+                        If + Past Simple, would + bezokolicznik
+                    </div>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>🗣️</span> Przykład:</h3>
+                    <div class="example-box">
+                        <div class="example-text">If I had a million dollars, I would buy a big house.</div>
+                        <div class="example-translation">(Gdybym miał milion dolarów, kupiłbym duży dom.)</div>
+                    </div>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>💬</span> Wytłumaczenie:</h3>
+                    <p>To jest marzenie lub wyobrażenie — nie mam miliona dolarów, ale mówię, co by było, gdyby tak było.</p>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>🔹</span> Uwaga:</h3>
+                    <div class="note-box">
+                        <p>W tym trybie z „I/he/she/it” często używamy „were” zamiast „was” (formalnie poprawniej):</p>
+                        <div class="example-box">
+                            <div class="example-text">If I were you, I would study more.</div>
+                            <div class="example-translation">(Gdybym był tobą, uczyłbym się więcej.)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Third Conditional -->
+            <div id="third" class="conditional-content">
+                <div class="conditional-header">
+                    <span class="conditional-icon">🔴</span>
+                    <h2 class="conditional-title">3 Conditional (Third Conditional)</h2>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>📘</span> Czym jest:</h3>
+                    <p>Używamy go, by mówić o sytuacjach z przeszłości, które się NIE wydarzyły, i o tym, co by się stało, gdyby było inaczej.</p>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>🧩</span> Budowa:</h3>
+                    <div class="structure-box">
+                        If + Past Perfect, would have + III forma (Past Participle)
+                    </div>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>🗣️</span> Przykład:</h3>
+                    <div class="example-box">
+                        <div class="example-text">If I had studied harder, I would have passed the exam.</div>
+                        <div class="example-translation">(Gdybym się więcej uczył, zdałbym egzamin.)</div>
+                    </div>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>💬</span> Wytłumaczenie:</h3>
+                    <p>Warunek dotyczy przeszłości, ale jest niemożliwy do zmiany — nie mogę już się więcej nauczyć, bo to się stało (lub nie stało).</p>
+                </div>
+            </div>
+            
+            <!-- Mixed Conditional -->
+            <div id="mixed" class="conditional-content">
+                <div class="conditional-header">
+                    <span class="conditional-icon">🟣</span>
+                    <h2 class="conditional-title">Mixed Conditional (Mieszany Tryb Warunkowy)</h2>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>📘</span> Czym jest:</h3>
+                    <p>Łączy przeszłość i teraźniejszość, gdy przyczyna jest w przeszłości, ale skutek trwa teraz.</p>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>🧩</span> Budowa (najczęstsza forma):</h3>
+                    <div class="structure-box">
+                        If + Past Perfect, would + bezokolicznik
+                    </div>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>🗣️</span> Przykład:</h3>
+                    <div class="example-box">
+                        <div class="example-text">If I had studied medicine, I would be a doctor now.</div>
+                        <div class="example-translation">(Gdybym studiował medycynę, byłbym teraz lekarzem.)</div>
+                    </div>
+                </div>
+                
+                <div class="conditional-section">
+                    <h3><span>💬</span> Wytłumaczenie:</h3>
+                    <p>Przeszłość: nie studiowałem medycyny. Teraźniejszość: więc teraz nie jestem lekarzem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // Conditional tabs functionality
+        const tabs = document.querySelectorAll('.conditional-tab');
+        const contents = document.querySelectorAll('.conditional-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const target = tab.getAttribute('data-target');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    document.querySelector('nav ul').classList.remove('active');
+                }
+            });
+        });
+
+        // Add some interactive elements to conditionals
+        document.querySelectorAll('.example-box').forEach(box => {
+            box.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ustaw Zero Conditional jako aktywny na starcie
+            const zeroTab = document.querySelector('[data-target="zero"]');
+            const zeroContent = document.getElementById('zero');
+            if (zeroTab && zeroContent) {
+                document.querySelectorAll('.conditional-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.conditional-content').forEach(c => c.classList.remove('active'));
+                zeroTab.classList.add('active');
+                zeroContent.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
